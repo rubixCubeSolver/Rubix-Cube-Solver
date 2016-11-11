@@ -17,7 +17,13 @@ namespace Rubix_Cube_Solver
             InitializeComponent();
         }
 
+        #region variables
+
         Color draw_color = Color.Black;
+        cubit s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12;
+        cubit cnr1, cnr2, cnr3, cnr4, cnr5, cnr6, cnr7, cnr8;
+
+        #endregion
 
         private void pick_color(object sender, EventArgs e)
         {
@@ -72,12 +78,12 @@ namespace Rubix_Cube_Solver
 
         private void Solve_Click(object sender, EventArgs e)
         {
-            #region Making the side arrays
+            #region Making the 3x3 arrays
             //whtie center
             Color[,] whiteC = new Color[,] { { ctc(a1), ctc(a2), ctc(a3) },
                                              { ctc(b1), ctc(b2), ctc(b3) },
                                              { ctc(c1), ctc(c2),  ctc(c3)} };
-            //grean center
+            //green center
             Color[,] greenC = new Color[,] { { ctc(d1), ctc(d2), ctc(d3) },
                                              { ctc(e1), ctc(e2), ctc(e3) },
                                              { ctc(f1), ctc(f2),  ctc(f3)} };
@@ -101,8 +107,6 @@ namespace Rubix_Cube_Solver
 
             #region setting the side cubits
 
-            cubit s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12;
-
             s1 = new cubit(blueC[0, 1], whiteC[1, 2]);
             s2 = new cubit(blueC[1, 2], orangeC[1, 0]);
             s3 = new cubit(blueC[1, 0], redC[1, 2]);
@@ -117,9 +121,27 @@ namespace Rubix_Cube_Solver
             s12 = new cubit(orangeC[2, 1], yellowC[2, 1]);
 
             cubit[] sides = { s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12};
-            
+
+
 
             #endregion
+
+            #region setting the corner cubits
+
+            cnr1 = new cubit(yellowC[2,2], blueC[2,2], orangeC[2,0]);
+            cnr2 = new cubit(yellowC[2,0], orangeC[2,2], greenC[2,0]);
+            cnr3 = new cubit(yellowC[0,0], greenC[2,2], redC[2,0]);
+            cnr4 = new cubit(yellowC[0,2], redC[2,2], blueC[2,0]);
+
+            cnr5 = new cubit(whiteC[0,2], orangeC[0,0], blueC[0,2]);
+            cnr6 = new cubit(whiteC[2,2],blueC[0,0], redC[0,2]);
+            cnr7 = new cubit(whiteC[2, 0], redC[0, 0], greenC[0, 2]);
+            cnr8 = new cubit(whiteC[0, 0], greenC[0, 0], orangeC[0, 2]);
+
+            cubit[] corners = { cnr1, cnr2, cnr3, cnr4, cnr5, cnr6, cnr7, cnr8 };
+
+            #endregion
+
         }
 
         private Color ctc(PictureBox pc)
