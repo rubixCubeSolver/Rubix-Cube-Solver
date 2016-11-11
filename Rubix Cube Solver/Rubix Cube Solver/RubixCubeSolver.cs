@@ -72,9 +72,7 @@ namespace Rubix_Cube_Solver
 
         private void Solve_Click(object sender, EventArgs e)
         {
-            //Making the side arrays
-            //----------------------
-
+            #region Making the side arrays
             //whtie center
             Color[,] whiteC = new Color[,] { { ctc(a1), ctc(a2), ctc(a3) },
                                              { ctc(b1), ctc(b2), ctc(b3) },
@@ -99,10 +97,29 @@ namespace Rubix_Cube_Solver
             Color[,] orangeC = new Color[,] { { ctc(d10), ctc(d11), ctc(d12) },
                                              { ctc(e10), ctc(e11), ctc(e12) },
                                              { ctc(f10), ctc(f11),  ctc(f12)} };
+            #endregion
 
+            #region setting the side cubits
 
-            //setting the side cubits
+            cubit s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12;
 
+            s1 = new cubit(blueC[0, 1], whiteC[1, 2]);
+            s2 = new cubit(blueC[1, 2], orangeC[1, 0]);
+            s3 = new cubit(blueC[1, 0], redC[1, 2]);
+            s4 = new cubit(blueC[2, 1], yellowC[1, 2]);
+            s5 = new cubit(redC[0, 1], whiteC[2, 1]);
+            s6 = new cubit(redC[1, 0], greenC[1, 2]);
+            s7 = new cubit(redC[2, 1], yellowC[0, 1]);
+            s8 = new cubit(greenC[0, 1], whiteC[1, 0]);
+            s9 = new cubit(greenC[1, 0], orangeC[1, 2]);
+            s10 = new cubit(greenC[2, 1], yellowC[1, 0]);
+            s11 = new cubit(orangeC[0, 1], whiteC[0, 1]);
+            s12 = new cubit(orangeC[2, 1], yellowC[2, 1]);
+
+            cubit[] sides = { s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12};
+            
+
+            #endregion
         }
 
         private Color ctc(PictureBox pc)

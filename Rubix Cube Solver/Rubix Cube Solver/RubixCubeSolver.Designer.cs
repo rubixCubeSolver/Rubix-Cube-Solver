@@ -898,8 +898,10 @@
             this.Controls.Add(this.d2);
             this.Controls.Add(this.d1);
             this.Controls.Add(this.pictureBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "RubixCubeSolver";
             this.ShowIcon = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rubix Cube Solver";
             ((System.ComponentModel.ISupportInitialize)(this.d1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.d2)).EndInit();
