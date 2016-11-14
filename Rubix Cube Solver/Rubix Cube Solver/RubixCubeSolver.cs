@@ -16,13 +16,19 @@ namespace Rubix_Cube_Solver
         {
             InitializeComponent();
         }
+        //The cube is in a fixed position, white on top, red in front
 
         #region variables
 
         Color draw_color = Color.Black;
         cubit s1, s2, s3, s4, s5, s6, s7, s8, s9, s10, s11, s12;
         cubit cnr1, cnr2, cnr3, cnr4, cnr5, cnr6, cnr7, cnr8;
-
+        Color[,] whiteC;
+        Color[,] greenC;
+        Color[,] redC;
+        Color[,] yellowC;
+        Color[,] blueC;
+        Color[,] orangeC;
         #endregion
 
         private void pick_color(object sender, EventArgs e)
@@ -78,32 +84,7 @@ namespace Rubix_Cube_Solver
 
         private void Solve_Click(object sender, EventArgs e)
         {
-            #region Making the 3x3 arrays
-            //whtie center
-            Color[,] whiteC = new Color[,] { { ctc(a1), ctc(a2), ctc(a3) },
-                                             { ctc(b1), ctc(b2), ctc(b3) },
-                                             { ctc(c1), ctc(c2),  ctc(c3)} };
-            //green center
-            Color[,] greenC = new Color[,] { { ctc(d1), ctc(d2), ctc(d3) },
-                                             { ctc(e1), ctc(e2), ctc(e3) },
-                                             { ctc(f1), ctc(f2),  ctc(f3)} };
-            //red center
-            Color[,] redC = new Color[,] { { ctc(d4), ctc(d5), ctc(d6) },
-                                             { ctc(e4), ctc(e5), ctc(e6) },
-                                             { ctc(f4), ctc(f5),  ctc(f6)} };
-            //yellow center
-            Color[,] yellowC = new Color[,] { { ctc(g1), ctc(g2), ctc(g3) },
-                                             { ctc(h1), ctc(h2), ctc(h3) },
-                                             { ctc(i1), ctc(i2),  ctc(i3)} };
-            //blue center
-            Color[,] blueC = new Color[,] { { ctc(d7), ctc(d8), ctc(d9) },
-                                             { ctc(e7), ctc(e8), ctc(e9) },
-                                             { ctc(f7), ctc(f8),  ctc(f9)} };
-            //orange center
-            Color[,] orangeC = new Color[,] { { ctc(d10), ctc(d11), ctc(d12) },
-                                             { ctc(e10), ctc(e11), ctc(e12) },
-                                             { ctc(f10), ctc(f11),  ctc(f12)} };
-            #endregion
+            Update();
 
             #region setting the side cubits
 
@@ -142,12 +123,52 @@ namespace Rubix_Cube_Solver
 
             #endregion
 
+            front();
+
+
+        }
+
+        private new void Update()
+        {
+            //whtie center
+            whiteC = new Color[,] { { ctc(a1), ctc(a2), ctc(a3) },
+                                             { ctc(b1), ctc(b2), ctc(b3) },
+                                             { ctc(c1), ctc(c2),  ctc(c3)} };
+            //green center
+            greenC = new Color[,] { { ctc(d1), ctc(d2), ctc(d3) },
+                                             { ctc(e1), ctc(e2), ctc(e3) },
+                                             { ctc(f1), ctc(f2),  ctc(f3)} };
+            //red center
+            redC = new Color[,] { { ctc(d4), ctc(d5), ctc(d6) },
+                                             { ctc(e4), ctc(e5), ctc(e6) },
+                                             { ctc(f4), ctc(f5),  ctc(f6)} };
+            //yellow center
+            yellowC = new Color[,] { { ctc(g1), ctc(g2), ctc(g3) },
+                                             { ctc(h1), ctc(h2), ctc(h3) },
+                                             { ctc(i1), ctc(i2),  ctc(i3)} };
+            //blue center
+            blueC = new Color[,] { { ctc(d7), ctc(d8), ctc(d9) },
+                                             { ctc(e7), ctc(e8), ctc(e9) },
+                                             { ctc(f7), ctc(f8),  ctc(f9)} };
+            //orange center
+            orangeC = new Color[,] { { ctc(d10), ctc(d11), ctc(d12) },
+                                             { ctc(e10), ctc(e11), ctc(e12) },
+                                             { ctc(f10), ctc(f11),  ctc(f12)} };
+        }
+
+        private void front()
+        {
+            for (int i = 0; i <= 2; i++)
+            {
+                blueC[i, 0] = whiteC[0, i];
+                MessageBox.Show(blueC[i, 0].ToString());
+            }
+
         }
 
         private Color ctc(PictureBox pc)
         {
             return pc.BackColor;
         }
-
     }
 }
